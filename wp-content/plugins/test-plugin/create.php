@@ -13,3 +13,18 @@ add_action('wp_footer', function() {
 add_filter('the_content', function($content) {
     return "<p>Start</p>" . $content . "<p>End</p>";
 });
+
+add_action('init', function() {
+    register_post_type('product', [
+        'label' => 'Products',
+        'public' => true,
+        'has_archive' => true
+    ]);
+});
+
+add_action('init', function() {
+    register_taxonomy('product_category', 'product', [
+        'label' => 'Product Categories',
+        'hierarchical' => true
+    ]);
+});
